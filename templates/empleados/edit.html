@@ -1,27 +1,49 @@
-Formulario para Editar
+{% include 'header.html' %}
+
+
 {% for empleado in empleados  %}
 <form method="post" action="/update" enctype="multipart/form-data">
     
-    Id:
-    <input type="text" name="txtID" value="{{ empleado[0]}}" id="txtID">
+    <div class="card">
+        <div class="card-header">
+            Editar Empleado
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Datos empleado</h5>
+            <p class="card-text"></p>
+       
+    <input type="hidden" name="txtID" value="{{ empleado[0]}}" id="txtID">
     <br>
 
-    Nombre:
-    <input type="text" name="txtNombre" value="{{ empleado[1]}}" id="txtNombre">
-    <br>
+    <div class="form-group">
+        <label for="txtNombret">Nombre:</label>
+        <input id="txtNombre" value="{{ empleado[1]}}" class="form-control" type="text" name="txtNombre">
+    </div>
 
-    Correo:
-    <input type="text" name="txtCorreo" value="{{ empleado[2]}}" id="txtCorreo">
-    <br>
+    <div class="form-group">
+        <label for="txtCorreo">Correo:</label>
+        <input id="txtCorreo" value="{{ empleado[2]}}" class="form-control" type="text" name="txtNombre">
+    </div>
 
-    Foto:
-    <input type="file" name="txtFoto" id="txtFoto">
-    <br>
+    <div class="form-group">
+        <label for="txtFoto">Foto:</label>
+        <img  class="img-thumbnail" width="100" src="{{url_for('uploads', nombreFoto=empleado[3])}}" alt="">
+        <input id="txtFoto" value="{{ empleado[3]}}" class="form-control" type="file" name="txtNombre">
+    </div>
 
-    <input type="submit" value="Editar">
+    <div class="form-group">
+        <input type="submit" class="btn btn-success"   value="Editar">
+        <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+    </div>
+
+
+</div>
+</div>
 
 </form>
 
 
 
 {% endfor %}
+
+{% include 'footer.html' %}
